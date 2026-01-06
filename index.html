@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Best Friend Simbo Bimbo</title>
+    <!-- Modern Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink: #ffdae9;
+            --lavender: #e6e6fa;
+            --peach: #ffedda;
+            --baby-blue: #dcf2ff;
+            --text-color: #6d5d6e;
+            --accent-pink: #ff85a2;
+            --white: rgba(255, 255, 255, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--pink), var(--lavender), var(--peach), var(--baby-blue));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Background Elements */
+        .background-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .cloud {
+            position: absolute;
+            background: white;
+            filter: blur(20px);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: floatCloud 20s linear infinite;
+        }
+
+        @keyframes floatCloud {
+            from { transform: translateX(-150px); }
+            to { transform: translateX(110vw); }
+        }
+
+        .heart {
+            position: absolute;
+            color: var(--accent-pink);
+            opacity: 0.5;
+            animation: floatUp 6s linear infinite;
+            font-size: 20px;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+
+        /* Common Styling */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .glass-card {
+            background: var(--white);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 40px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+
+        .glass-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: var(--accent-pink);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--accent-pink);
+        }
+
+        p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* Section 1: Welcome */
+        .welcome-hero h1 {
+            animation: heartbeat 2s infinite ease-in-out;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Section 3: Cards */
+        .special-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .cute-item {
+            background: white;
+            padding: 20px;
+            border-radius: 30px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cute-item:hover {
+            transform: translateY(-10px) rotate(2deg);
+            background: var(--peach);
+        }
+
+        /* Section 4: Health Care */
+        .health-list {
+            text-align: left;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .check-item span {
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+
+        /* Section 5: Choices */
+        .choice-btn {
+            background: white;
+            border: 2px solid var(--accent-pink);
+            padding: 12px 25px;
+            border-radius: 50px;
+            margin: 10px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            color: var(--accent-pink);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .choice-btn:hover {
+            background: var(--accent-pink);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        #choice-response {
+            margin-top: 20px;
+            min-height: 50px;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        /* Section 6: Promise Button */
+        .big-promise-btn {
+            background: var(--accent-pink);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 133, 162, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .big-promise-btn:hover {
+            transform: scale(1.05);
+            background: #ff6b91;
+        }
+
+        /* Mobile Friendliness */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .glass-card { padding: 25px; border-radius: 30px; }
+            p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-elements" id="bg-elements"></div>
+
+    <!-- 1. Welcome Page -->
+    <section>
+        <div class="glass-card scroll-reveal">
+            <h1>I’m really sorry, my Simbo bimbo, my cutie pie</h1>
+            <p>Please take a moment to scroll through this... it's just for you. </p>
+            <div style="font-size: 50px;"></div>
+        </div>
+    </section>
+
+    <!-- 2. Heartfelt Apology -->
+    <section>
+        <div class="glass-card scroll-reveal">
+            <h2>To My Dearest Cutie Pie</h2>
+            <p id="apology-text">
+                My dear Simbo bimbo, I’ve been feeling so heavy-hearted because I never, ever want to be the reason for a frown on your face. You are the person who brings so much light into my life, and hurting you is the last thing I’d ever want to do. <br><br>
+                Please forgive me for my mistakes. Our friendship is the most precious thing I own, and I promise to cherish you more carefully from now on. You mean the world to me, Sony.
+            </p>
+        </div>
+    </section>
+
+    <!-- 3. You Mean So Much -->
+    <section>
+        <div class="glass-card scroll-reveal">
+            <h2>Why You're So Special</h2>
+            <div class="special-grid">
+                <div class="cute-item">
+                    <h3>? Your Heart</h3>
+                    <p>You have the kindest soul I've ever met.</p>
+                </div>
+                <div class="cute-item">
+                    <h3>?? Your Hugs</h3>
+                    <p>Talking to you feels like home.</p>
+                </div>
+                <div class="cute-item">
+                    <h3>?? Your Smile</h3>
+                    <p>It makes my darkest days bright again.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Health Care Promise -->
+    <section>
+        <div class="glass-card scroll-reveal">
+            <h2>A Promise to You ??</h2>
+            <p><strong>Piyary Alee</strong>, I promise to take better care of my health — physically and emotionally — because I know you worry about me and care deeply.</p>
+            
+            <div class="health-list">
+                <div class="check-item"><span>??</span> Eating properly, Sony</div>
+                <div class="check-item"><span>??</span> Resting enough and not overworking</div>
+                <div class="check-item"><span>?????</span> Taking breaks when needed</div>
+                <div class="check-item"><span>??</span> Caring for my mental health</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Choices -->
+    <section>
+        <div class="glass-card scroll-reveal">
+            <h2>How are you feeling, Simbo bimbo?</h2>
+            <p>Your feelings matter most to me. Take your time.</p>
+            <div>
+                <button class="choice-btn" onclick="handleChoice('forgive')">I forgive you ??</button>
+                <button class="choice-btn" onclick="handleChoice('time')">I need some time ??</button>
+                <button class="choice-btn" onclick="handleChoice('hurt')">I’m still hurt but I care ??</button>
+            </div>
+            <div id="choice-response"></div>
+        </div>
+    </section>
+
+    <!-- 6. Promises From My Heart -->
+    <section>
+        <div class="glass-card scroll-reveal">
+            <h2>My Vows to You</h2>
+            <p>I promise to always be honest with you, to communicate my feelings better, and to never stop putting effort into "us." I promise to take care of myself so I can be the best version of myself for you.</p>
+            <button class="big-promise-btn" onclick="sealPromise()">MY Cutie pie, I promise with my whole heart</button>
+        </div>
+    </section>
+
+    <!-- 7. Final Message -->
+    <section>
+        <div class="glass-card scroll-reveal">
+            <h1>Always & Forever</h1>
+            <p>No matter what you choose, Simbo Bimbo, I respect you, value you, and I’m always grateful for you. You are my best friend, today and every day after.</p>
+            <div style="font-size: 40px; margin-top: 20px;">????</div>
+        </div>
+    </section>
+
+    <script>
+        // 1. Generate Floating Background Elements
+        const bgContainer = document.getElementById('bg-elements');
+        
+        function createBackground() {
+            // Create Clouds
+            for (let i = 0; i < 8; i++) {
+                const cloud = document.createElement('div');
+                cloud.className = 'cloud';
+                const size = Math.random() * 150 + 100;
+                cloud.style.width = `${size}px`;
+                cloud.style.height = `${size * 0.6}px`;
+                cloud.style.top = `${Math.random() * 100}vh`;
+                cloud.style.left = `-${size}px`;
+                cloud.style.animationDelay = `${Math.random() * 20}s`;
+                bgContainer.appendChild(cloud);
+            }
+
+            // Create Initial Hearts
+            for (let i = 0; i < 15; i++) {
+                spawnHeart();
+            }
+        }
+
+        function spawnHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '??';
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.animationDuration = `${Math.random() * 3 + 4}s`;
+            heart.style.fontSize = `${Math.random() * 15 + 15}px`;
+            bgContainer.appendChild(heart);
+            
+            // Remove after animation to save memory
+            setTimeout(() => { heart.remove(); spawnHeart(); }, 6000);
+        }
+
+        // 2. Intersection Observer for Scroll Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.glass-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // 3. Choice Logic
+        function handleChoice(type) {
+            const responseDiv = document.getElementById('choice-response');
+            let text = "";
+            
+            if (type === 'forgive') {
+                text = "Thank you, my cutie pie... I don't deserve you, but I promise to make you proud. ??";
+            } else if (type === 'time') {
+                text = "I completely understand. I'll be right here, waiting patiently whenever you're ready to talk. ??";
+            } else if (type === 'hurt') {
+                text = "I'm so sorry I caused that pain. Your feelings are valid, and I'll work hard to heal that hurt. ????";
+            }
+            
+            responseDiv.style.opacity = 0;
+            setTimeout(() => {
+                responseDiv.innerText = text;
+                responseDiv.style.opacity = 1;
+                responseDiv.style.transition = "opacity 0.5s ease";
+            }, 300);
+        }
+
+        // 4. Promise Logic
+        function sealPromise() {
+            alert("Promise sealed! I love you, Simbo Bimbo! ");
+            // Add extra sparkles on click
+            for(let i=0; i<20; i++) {
+                spawnHeart();
+            }
+        }
+
+        window.onload = createBackground;
+    </script>
+</body>
+</html>
